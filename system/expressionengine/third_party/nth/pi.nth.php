@@ -81,7 +81,7 @@ class Nth {
 			ob_start();
 	?>
 
-	:nth allows you to add a class to the nth element in a repeating
+	Nth allows you to add a class to the nth element in a repeating
 	set of channel entries. Simply wrap your {exp:channel:entries} tag in a
 	{exp:nth} tag and use the class and interval parameters to designate
 	the class name and nth index. In the following examples, every 4th <li> tag would 
