@@ -26,8 +26,8 @@
 
 $plugin_info = array(
 	'pi_name'					=> 'Nth',
-	'pi_version'			=> '1.0',
-	'pi_author'				=> 'Scott Boms',
+	'pi_version'			=> '1.0.1',
+	'pi_author'				=> 'Scott Boms (Updated version of the Nth plugin from Booyant)',
 	'pi_author_url'		=> 'http://scottboms.com',
 	'pi_description'	=> 'Adds a class to every nth element in a set of repeating EE generated elements',
 	'pi_usage'				=> Nth::usage()
@@ -81,31 +81,28 @@ class Nth {
 			ob_start();
 	?>
 
-	Nth allows you to add a class to the nth element in a repeating
-	set of channel entries. Simply wrap your {exp:channel:entries} tag in a
-	{exp:nth} tag and use the class and interval parameters to designate
-	the class name and nth index. In the following examples, every 4th <li> tag would 
-	be affected.
+	Nth allows you to add a class to the nth element in a repeating set of 
+	channel entries. Wrap your {exp:channel:entries} tag in a {exp:nth} tag and 
+	use the class and interval parameters to designate the class name and nth 
+	index. In the following examples, every 3rd <li> tag would be affected.
 
-	SIMPLE USE:
-
-	{exp:nth class="last_one" interval="4"}
+	{exp:nth class="last" interval="3"}
 	<ul>
 		{exp:channel:entries channel="some-content"}
 			<li class="{nth}">{title}</li>
 		{/exp:channel:entries}
 	</ul>
 	{/exp:nth}
-	
 
-	REFINED USE:
+	The basic use of the class attribute will add an empty class attribute to 
+	each <li> element unaffected by the plugin. The basic method allows you 
+	to apply multiple classes to an element.
 
-	In the simple use scenario an empty class attribute will be added to each <li> tag
-	that is unaffected by the plugin. With a little fancier footwork, you can avoid this.
-	Just make sure to mind the spaces and switch to the simple use method
-	if you need to use multiple classes on the element in question.
+	Alternatively, you can include the entire rendered class attribute into the 
+	{exp:nth} class attribute. This is useful if you only need to apply a single 
+	class to each output element.
 
-	{exp:nth class=' class="last_one"' interval="4"}
+	{exp:nth class=' class="last"' interval="3"}
 	<ul>
 		{exp:channel:entries channel="some-content"}
 			<li {nth}>{title}</li>
@@ -113,10 +110,6 @@ class Nth {
 	</ul>
 	{/exp:nth}
 
-	***NOTE***
-
-	Make sure to wrap the {exp:channel:entries} tag with the {exp:nth} tag. Wrapping
-	{exp:nth} in the {exp:channel:entries} will throw a wrench in the works.
 	<?php
 			$buffer = ob_get_contents();
 			ob_end_clean();
